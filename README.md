@@ -1,5 +1,7 @@
 NOTE: If you are using this with Coqui for voice cloning, I urge you to check out [epub2tts-chatterbox](https://github.com/aedocw/epub2tts-chatterbox)! It is SO much better! Requires GPU, and is kind of slow, but the quality is amazing. No halucinations, way better emotion, it is a HUGE improvement!
 
+Also take a look at [epub2tts-vibevoice](https://github.com/aedocw/epub2tts-vibevoice), which uses Microsoft VibeVoice. That TTS engine handles long text really well, and the output is very high quality.
+
 > epub2tts is a free and open source python app to easily create a full-featured audiobook from an epub or text file using realistic text-to-speech from [Coqui AI TTS](https://github.com/coqui-ai/TTS), OpenAI or MS Edge.
 > Also check out [epub2tts-edge](https://github.com/aedocw/epub2tts-edge) and [epub2tts-kokoro](https://github.com/aedocw/epub2tts-kokoro) for lighter-weight engine-specific versions. The kokoro engine is especially good and fast!
 
