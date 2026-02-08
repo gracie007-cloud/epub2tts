@@ -377,7 +377,12 @@ def process_book_chapter(dat):
     print("initiating chapter: ", dat['chapter'])
     tts_engine = dat['config']['engine_cl'](dat['config'])
     for text, file_name in dat['sentene_job_que']:
-        tts_engine.proccess_text_retry(text, file_name)
+        try:
+            tts_engine.proccess_text_retry(text, file_name)
+        except Exception as exc:
+            # Ensure exceptions are pickle-safe for multiprocessing.
+            msg = f"Chapter '{dat['chapter']}' failed: {exc.__class__.__name__}: {exc}"
+            raise RuntimeError(msg) from None
 
     text_timings = []
     time_ofset = 0
@@ -968,7 +973,7 @@ class EpubToAudiobook:
 
         print("initiating work:")
         
-        if self.device == 'cuda':
+        if self.device == 'cuda' or self.threads <= 1:
             map_result = list(map(process_book_chapter, chapter_job_que))
         else:
             pool = mp.Pool(processes=self.threads)
